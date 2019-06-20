@@ -1,0 +1,15 @@
+import React from 'react';
+import Navbar from '../Components/Navbar';
+import ChatContent from '../Components/ChatContent';
+import ChatInput from '../Components/ChatInput';
+
+import '../Stylesheets/normalize.scss';
+import './style.scss';
+
+export default () => (
+    <div className="chat-container">
+        <Navbar />
+        <ChatContent />
+        <ChatInput />
+    </div>
+);

@@ -1,0 +1,32 @@
+@import '../../Stylesheets/shared.scss';
+
+.chat-navbar {
+    @include containered;
+    display: flex;
+    flex: 1;
+    box-shadow: 1px 1px 20px gray;
+    z-index: 0;
+    align-items: center;
+
+    .bot-image {
+        height: 80%;
+        border-radius: 100%;
+        margin-right: 15px;
+    }
+
+    .bot-details {
+        display: flex;
+        flex-direction: column;
+        color: white;
+
+        .bot-status {
+            font-size: 0.8em;
+        }
+    }
+
+    .bot-talk {
+        color: white;
+        text-align: center;
+        width: 100%;
+    }
+}
