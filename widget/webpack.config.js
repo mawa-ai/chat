@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     entry: ["./src/widget.js"],
+    mode: process.env.NODE_ENV || 'production',
     module: {
         rules: [
             {
