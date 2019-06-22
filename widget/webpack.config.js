@@ -6,18 +6,19 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.js(x|)$/,
                 use: {
                     loader: "babel-loader",
                     options: {
-                        presets: ["@babel/preset-env"]
+                        presets: ["@babel/preset-env", "@babel/react"],
+                        plugins: ["@babel/plugin-syntax-dynamic-import"]
                     }
                 },
                 include: /src/
             },
             {
                 test: /\.s[ac]ss$/,
-                use: ["style-loader", "sass-loader"],
+                use: ["style-loader", "css-loader", "sass-loader"],
                 include: /src/
             },
             {
@@ -31,7 +32,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './index.html',
-            inject: 'body'
+            inject: 'head'            
         })
     ],
     devServer: {
@@ -45,5 +46,8 @@ module.exports = {
         filename: "widget.min.js",
         libraryTarget: "umd",
         umdNamedDefine: true
+    },
+    resolve: {
+        extensions: ['.js', '.jsx', '.json']
     }
 };
