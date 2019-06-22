@@ -3,13 +3,20 @@ export const getUrlParameters = (pathTemplate, queryParameters) => {
 
     const searchParams = new URLSearchParams(window.location.search);
     queryParameters.forEach(key => {
-        parameters = {...parameters, ...{ [key]: searchParams.get(key) }};
+        const value = searchParams.get(key);
+
+        if (value !== null) {
+            parameters = { ...parameters, ...{ [key]: value } };
+        }
     });
 
-    // const path = window.location.pathname;
-    // const routeMatcher = new RegExp(pathTemplate.replace(/:[^\s/]+/g, '([\\w-]+)'));
-    // const matches = routeMatcher.exec(path);
-    // console.log(matches);
+    const path = window.location.pathname;
+    const pathPattern = new RegExp(pathTemplate.replace(/:(\w+)/g, '(?<$1>[\\w-]+)'));
+    const matches = pathPattern.exec(path);
 
-    return parameters;
+    if (matches) {
+        parameters = { ...parameters, ...matches.groups };
+    }
+
+    return { parameters, match: !!matches };
 };
