@@ -21,7 +21,6 @@ export class ChatWidget {
 
     async start() {
         ReactDOM.render(<WidgetManager
-            userId={this.configuration.userId}
             botId={this.configuration.botId}
         />, getDockElement.bind(this)());
     }
