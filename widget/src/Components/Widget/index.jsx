@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { widgetContext, getWidgetStyle, getWidgetClassNames } from '../../Contexts/Widget';
+import Invite from '../Invite';
 
 import './style.scss';
 
 export default () => {
-    return <div className="chat-widget">
+    const widget = useContext(widgetContext);
 
-    </div>;
+    return (
+        <>
+            <div
+                className={getWidgetClassNames()}
+                style={getWidgetStyle()}>
+            </div>
+            {widget.showInvite &&
+                <Invite message={widget.inviteMessage}
+                    showTimeout={widget.inviteShowTimeout}
+                    hideTimeout={widget.inviteHideTimeout} />}
+        </>
+    );
 }

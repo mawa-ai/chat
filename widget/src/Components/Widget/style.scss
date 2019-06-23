@@ -1,8 +1,56 @@
+@import "../../Stylesheets/shared.scss";
+
 .chat-widget {
-    position: fixed;
-    background-color: red;
-    width: 100px;
-    height: 100px;
-    bottom: 10px;
-    right: 10px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    @include widget-part;
+
+    &.animated {
+        animation-name: widget-slide-in;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+
+        &.hide {
+            animation-name: widget-slide-out;
+        }
+    }
+
+    &.left {
+        left: 35px;
+    }
+
+    &.right {
+        right: 35px;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+@keyframes widget-slide-in {
+    from {
+        display: block;
+        opacity: 0;
+        transform: translate(0, 100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes widget-slide-out {
+    from {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+
+    to {
+        display: none;
+        opacity: 0;
+        transform: translate(0, 100px);
+    }
 }

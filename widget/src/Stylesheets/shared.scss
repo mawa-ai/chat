@@ -1,0 +1,6 @@
+@mixin widget-part {
+    box-shadow: -3px 3px 10px -5px rgba(0, 0, 0, 1);
+    bottom: 35px;
+    z-index: 10;
+    position: fixed;
+}

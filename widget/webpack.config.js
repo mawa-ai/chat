@@ -2,7 +2,7 @@ var path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-    entry: ["./src/widget.js"],
+    entry: ["./src/index.js"],
     mode: process.env.NODE_ENV || 'production',
     module: {
         rules: [
@@ -44,7 +44,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, "build"),
-        filename: "widget.min.js",
+        filename: "index.min.js",
         libraryTarget: "umd",
         umdNamedDefine: true
     },
