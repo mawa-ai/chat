@@ -1,6 +1,7 @@
 import 'regenerator-runtime/runtime';
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import Widget from './Components/Widget'
 
 export class ChatWidget {
     constructor(configuration) {
@@ -8,8 +9,6 @@ export class ChatWidget {
     }
 
     async start() {
-        const Widget = lazy(() => import('./Components/Widget'));
-
         let renderElement = this.configuration.renderElement;
         if (!renderElement) {
             renderElement = document.createElement('div');
@@ -17,10 +16,6 @@ export class ChatWidget {
             document.body.appendChild(renderElement);
         }
 
-        ReactDOM.render(
-            <Suspense fallback="">
-                <Widget />
-            </Suspense>,
-            renderElement);
+        ReactDOM.render(<Widget />, renderElement);
     }
 }

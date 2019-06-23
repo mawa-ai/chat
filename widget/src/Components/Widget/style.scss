@@ -6,51 +6,15 @@
     background-repeat: no-repeat;
     @include widget-part;
 
-    &.animated {
-        animation-name: widget-slide-in;
-        animation-duration: 0.5s;
-        animation-fill-mode: forwards;
-
-        &.hide {
-            animation-name: widget-slide-out;
-        }
-    }
-
     &.left {
-        left: 35px;
+        left: $side-margin;
     }
 
     &.right {
-        right: 35px;
+        right: $side-margin;
     }
 
     &:hover {
         cursor: pointer;
-    }
-}
-
-@keyframes widget-slide-in {
-    from {
-        display: block;
-        opacity: 0;
-        transform: translate(0, 100px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translate(0, 0);
-    }
-}
-
-@keyframes widget-slide-out {
-    from {
-        opacity: 1;
-        transform: translate(0, 0);
-    }
-
-    to {
-        display: none;
-        opacity: 0;
-        transform: translate(0, 100px);
     }
 }

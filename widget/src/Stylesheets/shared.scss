@@ -1,6 +1,45 @@
+$side-margin: 25px;
+
 @mixin widget-part {
     box-shadow: -3px 3px 10px -5px rgba(0, 0, 0, 1);
-    bottom: 35px;
+    bottom: $side-margin;
     z-index: 10;
     position: fixed;
+
+    &.animated {
+        animation-name: widget-slide-in;
+        animation-duration: 0.5s;
+        animation-fill-mode: forwards;
+
+        &.hide {
+            animation-name: widget-slide-out;
+        }
+    }
+}
+
+
+@keyframes widget-slide-in {
+    from {
+        display: block;
+        opacity: 0;
+        transform: translate(0, 100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+@keyframes widget-slide-out {
+    from {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+
+    to {
+        display: none;
+        opacity: 0;
+        transform: translate(0, 100px);
+    }
 }
