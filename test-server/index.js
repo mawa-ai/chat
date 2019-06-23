@@ -1,7 +1,9 @@
-var WebSocketServer = require('websocket').server;
-var http = require('http');
+const WebSocketServer = require('websocket').server;
+const http = require('http');
 
-var server = http.createServer(function (request, response) {
+const mockData = require('./mock.json');
+
+const server = http.createServer(function (request, response) {
     console.log((new Date()) + ' Received request for ' + request.url);
     response.writeHead(404);
     response.end();
@@ -24,9 +26,23 @@ wsServer.on('request', function (request) {
         console.log((new Date()) + ' Connection from origin ' + request.origin + ' rejected.');
         return;
     }
+    
+    const params = new URLSearchParams(request.httpRequest.url.replace('/', ''));
+    const botId = params.get('botId');
+    if (!botId) {
+        request.reject();
+        console.log((new Date()) + ' Connection from origin ' + request.origin + ' rejected.');
+        return;
+    }
 
-    var connection = request.accept('echo-protocol', request.origin);
+    const connection = request.accept('echo-protocol', request.origin);
     console.log((new Date()) + ' Connection accepted.');
+
+    connection.send(JSON.stringify({
+        id: 1,
+        type: 'widget-configuration',
+        data: mockData.widget
+    }));
 
     connection.on('message', function (message) {
         console.log(message);

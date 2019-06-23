@@ -3,19 +3,26 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import WidgetManager from './Components/WidgetManager'
 
+function getDockElement() {
+    if (this.configuration.renderElement) {
+        return this.configuration.renderElement;
+    }
+
+    const renderElement = document.createElement('div');
+    renderElement.id = 'chat-widget-container';
+    document.body.appendChild(renderElement);
+    return renderElement;
+}
+
 export class ChatWidget {
     constructor(configuration) {
         this.configuration = configuration;
     }
 
     async start() {
-        let renderElement = this.configuration.renderElement;
-        if (!renderElement) {
-            renderElement = document.createElement('div');
-            renderElement.id = 'chat-widget-container';
-            document.body.appendChild(renderElement);
-        }
-
-        ReactDOM.render(<WidgetManager />, renderElement);
+        ReactDOM.render(<WidgetManager
+            userId={this.configuration.userId}
+            botId={this.configuration.botId}
+        />, getDockElement.bind(this)());
     }
 }
