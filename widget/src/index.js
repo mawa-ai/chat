@@ -1,7 +1,7 @@
 import 'regenerator-runtime/runtime';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Widget from './Components/Widget'
+import WidgetManager from './Components/WidgetManager'
 
 export class ChatWidget {
     constructor(configuration) {
@@ -16,6 +16,6 @@ export class ChatWidget {
             document.body.appendChild(renderElement);
         }
 
-        ReactDOM.render(<Widget />, renderElement);
+        ReactDOM.render(<WidgetManager />, renderElement);
     }
 }

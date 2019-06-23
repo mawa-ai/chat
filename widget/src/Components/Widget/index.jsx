@@ -1,14 +1,12 @@
-import React, { useContext } from 'react';
-import { widgetContext, getWidgetStyle, getWidgetClassNames } from '../../Contexts/Widget';
+import React from 'react';
+import { getWidgetStyle, getWidgetClassNames } from '../../Contexts/Widget';
 
 import './style.scss';
 
-export default () => {
-    const widget = useContext(widgetContext);
-
+export default props => {
     return (
         <div
-            className={`chat-widget ${getWidgetClassNames()}`}
+            className={`chat-widget ${getWidgetClassNames()} ${!props.show && 'hide'}`}
             style={getWidgetStyle()}>
         </div>
     );
