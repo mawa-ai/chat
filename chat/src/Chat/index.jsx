@@ -4,6 +4,7 @@ import ChatContent from '../Components/ChatContent';
 import ChatInput from '../Components/ChatInput';
 
 import '../Stylesheets/normalize.scss';
+import '../Stylesheets/global.scss';
 import './style.scss';
 
 export default () => {

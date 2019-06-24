@@ -6,8 +6,9 @@ import './style.scss';
 export default () => {
     const theme = useContext(Theme);
 
-    const [isHoveringSendButton, setIsHoveringSendButton] = useState(false);
     const [themeButtonStyle, setThemeButtonStyle] = useState({});
+    const [input, setInput] = useState('');
+    const [isHoveringSendButton, setIsHoveringSendButton] = useState(false);
 
     useEffect(() => {
         setThemeButtonStyle({
@@ -17,8 +18,9 @@ export default () => {
 
     return (
         <div className="chat-input">
-            <input placeholder="Digite aqui..." className="flat-input" type="text" />
-            <button className="flat-btn" style={themeButtonStyle}
+            <input placeholder="Digite aqui..." className="flat-input" type="text"
+                onChange={e => setInput(e.target.value)} value={input} />
+            <button className={`flat-btn  ${input.length === 0 && 'dn'}`} style={themeButtonStyle}
                 onMouseEnter={() => setIsHoveringSendButton(true)} onMouseLeave={() => setIsHoveringSendButton(false)}>
                 Enviar
             </button>

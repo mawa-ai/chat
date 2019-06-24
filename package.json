@@ -1,0 +1,16 @@
+{
+    "name": "chat",
+    "scripts": {
+        "start": "start cmd /k \"cd ./chat & npm start\" & start cmd /k \"cd ./test-server & npm start\" & cd ./widget & npm start"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ceifa/chat.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ceifa/chat/issues"
+    },
+    "homepage": "https://github.com/ceifa/chat#readme"
+}
