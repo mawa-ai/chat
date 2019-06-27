@@ -18,7 +18,10 @@ const sendCommand = command => {
     }
 };
 
-const processCommand = (listener, command) => listener(command.data);
+const processCommand = (listener, command) => {
+    commandQueue = commandQueue.filter(c => c.id !== command.id);
+    listener(command.data);
+}
 
 export {
     addCommandListener,

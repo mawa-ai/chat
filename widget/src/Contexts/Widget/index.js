@@ -23,6 +23,6 @@ export const getWidgetClassNames = () => {
     if (widget.animated) {
         classes.push('animated');
     }
-
+    
     return classes.join(' ');
 }

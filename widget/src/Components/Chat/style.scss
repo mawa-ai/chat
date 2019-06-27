@@ -1,0 +1,17 @@
+@import "../../Stylesheets/shared.scss";
+
+.chat-frame {
+    height: 610px;
+    width: 400px;
+    border: 0;
+    border-radius: 12px;
+    @include widget-part;
+
+    &.left {
+        left: $side-margin;
+    }
+
+    &.right {
+        right: $side-margin;
+    }
+}

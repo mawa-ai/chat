@@ -38,7 +38,7 @@ $side-margin: 25px;
     }
 
     to {
-        display: none;
+        visibility: hidden;
         opacity: 0;
         transform: translate(0, 100px);
     }
