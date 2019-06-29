@@ -14,4 +14,8 @@
     &.right {
         right: $side-margin;
     }
+
+    &.force-hide {
+        display: none;
+    }
 }

@@ -7,12 +7,15 @@ $side-margin: 25px;
     position: fixed;
 
     &.animated {
-        animation-name: widget-slide-in;
         animation-duration: 0.5s;
         animation-fill-mode: forwards;
 
         &.hide {
             animation-name: widget-slide-out;
+        }
+
+        &:not(.hide) {
+            animation-name: widget-slide-in;
         }
     }
 }
