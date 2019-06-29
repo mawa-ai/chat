@@ -12,6 +12,7 @@
     "dependencies": {
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
+        "react-use-websocket": "^0.8.0",
         "regenerator-runtime": "^0.13.2"
     },
     "devDependencies": {
