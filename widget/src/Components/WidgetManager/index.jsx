@@ -3,7 +3,7 @@ import Widget from '../Widget';
 import { widgetContext } from '../../Contexts/Widget';
 import Chat from '../Chat';
 import useWebSocket from 'react-use-websocket';
-import messageContext from '../../Contexts/Message';
+import MessageContext from '../../Contexts/Message';
 
 export default (props) => {
     const [widgetConfiguration, setWidgetConfiguration] = useState();
@@ -26,14 +26,14 @@ export default (props) => {
     const setConfig = newConfig => setWidgetConfiguration(p => ({ ...p, ...newConfig }));
 
     return (
-        widgetConfiguration && (
-            <messageContext.Provider value={{ sendMessage, message }}>
+        widgetConfiguration ? (
+            <MessageContext.Provider value={{ sendMessage, message }}>
                 <widgetContext.Provider value={{ config: widgetConfiguration, setConfig }}>
                     <Widget />
                     <Chat botId={props.botId} />
                 </widgetContext.Provider>
-            </messageContext.Provider>
-        ) || false
+            </MessageContext.Provider>
+        ) : false
     );
 }
 
@@ -41,5 +41,5 @@ const getWebsocketUrl = props => {
     const queryParameters = Object.keys(props).filter(k => props[k])
         .map(k => `${k}=${props[k]}`).join('&');
 
-    return `ws://localhost:8080?${queryParameters}`;
+    return `ws://localhost:8080?${queryParameters}&source=widget`;
 };

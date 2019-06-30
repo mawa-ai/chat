@@ -1,7 +1,23 @@
 @import "../../Stylesheets/shared.scss";
 
+body {
+    @media screen and (max-width: 750px) {
+        .chat-frame {
+            width: 100%;
+            height: 100%;
+            left: 0 !important;
+            bottom: 0 !important;
+            border-radius: 0;
+            max-width: unset;
+            max-height: unset;
+        }
+    }
+}
+
 .chat-frame {
     height: 610px;
+    min-height: 480px;
+    max-height: 80%;
     width: 400px;
     border: 0;
     border-radius: 12px;

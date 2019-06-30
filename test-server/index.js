@@ -26,7 +26,7 @@ wsServer.on('request', function (request) {
         console.log((new Date()) + ' Connection from origin ' + request.origin + ' rejected.');
         return;
     }
-    
+
     const params = new URLSearchParams(request.httpRequest.url.replace('/', ''));
     const botId = params.get('botId');
     if (!botId) {
@@ -38,11 +38,19 @@ wsServer.on('request', function (request) {
     const connection = request.accept();
     console.log((new Date()) + ' Connection accepted.');
 
-    connection.send(JSON.stringify({
-        id: 1,
-        type: 'widget-configuration',
-        data: mockData.widget
-    }));
+    if (params.get('source') === "widget") {
+        connection.send(JSON.stringify({
+            id: 1,
+            type: 'widget-configuration',
+            data: mockData.widget
+        }));
+    } else {
+        connection.send(JSON.stringify({
+            id: 1,
+            type: 'chat-theme',
+            data: mockData.chat
+        }));
+    }
 
     connection.on('message', function (message) {
         console.log(message);

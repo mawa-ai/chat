@@ -1,4 +1,4 @@
-export const getUrlParameters = (pathTemplate, queryParameters) => {
+export const getUrlParameters = (pathTemplate, queryParameters = []) => {
     let parameters = {};
 
     const searchParams = new URLSearchParams(window.location.search);

@@ -4,7 +4,7 @@ import Bot from '../../Contexts/Bot';
 
 import './style.scss';
 
-export default () => {
+export default props => {
     const theme = useContext(Theme);
     const bot = useContext(Bot);
 
@@ -19,6 +19,10 @@ export default () => {
         return () => window.removeEventListener('resize', onResize);
     }, [windowWidthSize])
 
+    const requestChatClose = () => {
+        window.parent.postMessage({ type: "close-chat" }, "*");
+    };
+
     return (
         <div className="chat-navbar" style={{ backgroundColor: theme.primaryColor }}>
             {
@@ -29,6 +33,9 @@ export default () => {
                             <span className="bot-name">{bot.name}</span>
                             <span className="bot-status">{bot.status}</span>
                         </div>
+                        {
+                            props.isFrame && <div className="close" onClick={requestChatClose} />
+                        }
                     </>
                 ) : (
                         <>

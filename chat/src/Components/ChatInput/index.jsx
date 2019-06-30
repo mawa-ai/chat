@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import Color from 'color';
 import Theme from '../../Contexts/Theme';
 
 import './style.scss';
@@ -12,7 +13,7 @@ export default () => {
 
     useEffect(() => {
         setThemeButtonStyle({
-            backgroundColor: theme.primaryColor.lighten(isHoveringSendButton ? 0.05 : 0)
+            backgroundColor: Color(theme.primaryColor).lighten(isHoveringSendButton ? 0.05 : 0)
         });
     }, [isHoveringSendButton, theme.primaryColor]);
 
