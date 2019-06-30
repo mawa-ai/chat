@@ -1,11 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
 import Color from 'color';
-import Theme from '../../Contexts/Theme';
+import ThemeContext from '../../Contexts/Theme';
+import MessageContext from '../../Contexts/Message';
 
 import './style.scss';
 
 export default () => {
-    const theme = useContext(Theme);
+    const theme = useContext(ThemeContext);
+    const { sendMessage } = useContext(MessageContext);
 
     const [themeButtonStyle, setThemeButtonStyle] = useState({});
     const [input, setInput] = useState('');
@@ -17,12 +19,23 @@ export default () => {
         });
     }, [isHoveringSendButton, theme.primaryColor]);
 
+    const sendInput = () => {
+        if (input.trim()) {
+            sendMessage({
+                type: "user-input",
+                content: input.trim()
+            });
+            setInput('');
+        }
+    };
+
     return (
         <div className="chat-input">
-            <input placeholder="Digite aqui..." className="flat-input" type="text"
-                onChange={e => setInput(e.target.value)} value={input} />
-            <button className={`flat-btn  ${input.length === 0 && 'dn'}`} style={themeButtonStyle}
-                onMouseEnter={() => setIsHoveringSendButton(true)} onMouseLeave={() => setIsHoveringSendButton(false)}>
+            <input placeholder="Digite aqui..." className="flat-input" type="text" value={input}
+                onChange={e => setInput(e.target.value)} onKeyDown={e => e.key === 'Enter' && sendInput()} />
+            <button className={`flat-btn  ${input.trim() || 'dn'}`} style={themeButtonStyle}
+                onMouseEnter={() => setIsHoveringSendButton(true)} onMouseLeave={() => setIsHoveringSendButton(false)}
+                onClick={sendInput}>
                 Enviar
             </button>
         </div>

@@ -50,10 +50,47 @@ wsServer.on('request', function (request) {
             type: 'chat-theme',
             data: mockData.chat
         }));
+
+        connection.send(JSON.stringify({
+            id: 2,
+            type: 'bot-settings',
+            data: mockData.bot
+        }));
+
+        connection.send(JSON.stringify({
+            id: 3,
+            type: "text/plain",
+            content: "Welcome to our service!"
+        }));
+
+        connection.send(JSON.stringify({
+            id: 4,
+            type: "text/plain",
+            content: "How can I help you?"
+        }));
+
+        connection.send(JSON.stringify({
+            id: 5,
+            type: "text/plain",
+            content: "How can I help you? How can I help you? How can I help you? How can I help you? " +
+                "How can I help you? How can I help you? How can I help you? How can I help you? " +
+                "How can I help you? How can I help you? How can I help you? How can I help you? " +
+                "How can I help you? How can I help you? How can I help you? How can I help you? "
+        }));
     }
 
     connection.on('message', function (message) {
-        console.log(message);
+        const data = JSON.parse(message.utf8Data);
+        if (data.type === "user-input") {
+            connection.send(JSON.stringify({
+                id: parseInt(Math.random() * 100000),
+                type: "text/plain",
+                content: data.content,
+                metadata: {
+                    from: 'user'
+                }
+            }));
+        }
     });
 
     connection.on('close', function (reasonCode, description) {

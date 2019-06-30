@@ -5,14 +5,16 @@ import ChatInput from '../Components/ChatInput';
 import { getUrlParameters } from '../Services/urlService';
 import useWebSocket from 'react-use-websocket';
 import MessageContext from '../Contexts/Message';
+import BotContext from '../Contexts/Bot';
+import ThemeContext from '../Contexts/Theme';
 
 import '../Stylesheets/normalize.scss';
 import '../Stylesheets/global.scss';
 import './style.scss';
-import Theme from '../Contexts/Theme';
 
 export default () => {
     const [theme, setTheme] = useState();
+    const [botSettings, setBotSettings] = useState()
     const [message, setMessage] = useState();
     const [sendMessage, setSendMessage] = useState(() => null);
 
@@ -22,7 +24,7 @@ export default () => {
 
     useEffect(() => {
         if (readyState === 1) {
-            setSendMessage(message => sendSocketMessage(JSON.stringify(message)));
+            setSendMessage(() => message => sendSocketMessage(JSON.stringify(message)));
 
             if (lastMessage) {
                 setMessage(JSON.parse(lastMessage.data));
@@ -31,21 +33,32 @@ export default () => {
     }, [lastMessage, sendSocketMessage, readyState]);
 
     useEffect(() => {
-        if (message && message.type === 'chat-theme') {
-            setTheme(message.data);
+        if (message && message.type) {
+            switch (message.type) {
+                case "chat-theme":
+                    setTheme(message.data);
+                    break;
+                case "bot-settings":
+                    setBotSettings(message.data);
+                    break;
+                default:
+                    break;
+            }
         }
     }, [message]);
 
     return (
-        theme ? (
+        theme && botSettings ? (
             <MessageContext.Provider value={{ sendMessage, message }}>
-                <Theme.Provider value={theme}>
-                    <div className="chat-container">
-                        <Navbar isFrame={!!parameters.frame} />
-                        <ChatContent />
-                        <ChatInput />
-                    </div>
-                </Theme.Provider>
+                <BotContext.Provider value={botSettings}>
+                    <ThemeContext.Provider value={theme}>
+                        <div className="chat-container">
+                            <Navbar isFrame={!!parameters.frame} />
+                            <ChatContent isFrame={!!parameters.frame} />
+                            <ChatInput />
+                        </div>
+                    </ThemeContext.Provider>
+                </BotContext.Provider>
             </MessageContext.Provider>
         ) : false
     );

@@ -1,11 +1,12 @@
 $side-margin: 25px;
+$shadow: -3px 3px 10px -5px black;
 
 .dn {
     display: none;
 }
 
 @mixin widget-part {
-    box-shadow: -3px 3px 10px -5px rgba(0, 0, 0, 1);
+    box-shadow: $shadow;
     bottom: $side-margin;
     z-index: 9999999;
     position: fixed;
