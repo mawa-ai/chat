@@ -14,7 +14,11 @@
         "primaryColor": "#F0466F",
         "secondaryColor": "#FFFFFF"
     },
+    "user": {
+        "id": "userlegal"
+    },
     "bot": {
+        "id": "botlegal",
         "name": "Unknown",
         "status": "Offline",
         "image": "https://i.imgur.com/VBkcv46.png"

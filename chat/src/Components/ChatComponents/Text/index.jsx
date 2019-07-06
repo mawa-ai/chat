@@ -1,10 +1,13 @@
 import React, { memo, useContext } from 'react';
 import ThemeContext from '../../../Contexts/Theme';
+import { UserContext } from '../../../Contexts/User';
 
 import './style.scss';
 
 export default memo(props => {
-    const side = props.metadata && props.metadata.from === 'user' ? 'right' : 'left';
+    const { user } = useContext(UserContext);
+    const side = props.from === user.id ? 'right' : 'left';
+
     let style = {};
 
     if (side === 'right') {

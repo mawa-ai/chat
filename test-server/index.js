@@ -38,53 +38,118 @@ wsServer.on('request', function (request) {
     const connection = request.accept();
     console.log((new Date()) + ' Connection accepted.');
 
-    if (params.get('source') === "widget") {
+    let id = 1;
+
+    if (params.get('source') === 'widget') {
         connection.send(JSON.stringify({
-            id: 1,
+            id: id++,
             type: 'widget-configuration',
             data: mockData.widget
         }));
     } else {
         connection.send(JSON.stringify({
-            id: 1,
-            type: 'chat-theme',
-            data: mockData.chat
+            id: id++,
+            to: 'chat',
+            type: 'application/json',
+            content: {
+                type: 'theme',
+                data: mockData.chat
+            }
         }));
 
         connection.send(JSON.stringify({
-            id: 2,
-            type: 'bot-settings',
-            data: mockData.bot
+            id: id++,
+            to: 'chat',
+            type: 'application/json',
+            content: {
+                type: 'bot-settings',
+                data: mockData.bot
+            }
         }));
 
         connection.send(JSON.stringify({
-            id: 3,
-            type: "text/plain",
-            content: "Welcome to our service!"
+            id: id++,
+            to: 'chat',
+            type: 'application/json',
+            content: {
+                type: 'user',
+                data: mockData.user
+            }
         }));
 
         connection.send(JSON.stringify({
-            id: 4,
-            type: "text/plain",
-            content: "How can I help you?"
+            id: id++,
+            from: 'botlegal',
+            to: 'userlegal',
+            type: 'application/vnd.lime.chatstate+json',
+            content: {
+                state: 'composing'
+            }
         }));
 
-        connection.send(JSON.stringify({
-            id: 5,
-            type: "text/plain",
-            content: "How can I help you? How can I help you? How can I help you? How can I help you? " +
-                "How can I help you? How can I help you? How can I help you? How can I help you? " +
-                "How can I help you? How can I help you? How can I help you? How can I help you? " +
-                "How can I help you? How can I help you? How can I help you? How can I help you? "
-        }));
+        setTimeout(() => {
+            connection.send(JSON.stringify({
+                id: id++,
+                from: 'botlegal',
+                to: 'userlegal',
+                type: 'text/plain',
+                content: 'Welcome to our service!'
+            }));
+
+            connection.send(JSON.stringify({
+                id: id++,
+                from: 'botlegal',
+                to: 'userlegal',
+                type: 'application/vnd.lime.chatstate+json',
+                content: {
+                    state: 'composing'
+                }
+            }));
+
+            setTimeout(() => {
+                connection.send(JSON.stringify({
+                    id: id++,
+                    from: 'botlegal',
+                    to: 'userlegal',
+                    type: 'text/plain',
+                    content: 'How can I help you?'
+                }));
+
+                connection.send(JSON.stringify({
+                    id: id++,
+                    from: 'botlegal',
+                    to: 'userlegal',
+                    type: 'application/vnd.lime.chatstate+json',
+                    content: {
+                        state: 'composing'
+                    }
+                }));
+
+
+                setTimeout(() => {
+                    connection.send(JSON.stringify({
+                        id: id++,
+                        from: 'botlegal',
+                        to: 'userlegal',
+                        type: 'text/plain',
+                        content: 'How can I help you? How can I help you? How can I help you? How can I help you? ' +
+                            'How can I help you? How can I help you? How can I help you? How can I help you? ' +
+                            'How can I help you? How can I help you? How can I help you? How can I help you? ' +
+                            'How can I help you? How can I help you? How can I help you? How can I help you? '
+                    }));
+                }, 1000);
+            }, 1000);
+        }, 1000);
     }
 
     connection.on('message', function (message) {
         const data = JSON.parse(message.utf8Data);
-        if (data.type === "user-input") {
+        if (data.type === 'user-input') {
             connection.send(JSON.stringify({
                 id: parseInt(Math.random() * 100000),
-                type: "text/plain",
+                type: 'text/plain',
+                from: 'userlegal',
+                to: 'botlegal',
                 content: data.content,
                 metadata: {
                     from: 'user'

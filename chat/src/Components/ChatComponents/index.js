@@ -1,6 +1,7 @@
 import React from 'react';
 import Text from './Text';
 import Select from './Select';
+import ChatState from './ChatState';
 
 import './style.scss';
 
@@ -13,6 +14,9 @@ export const getChatComponent = message => {
             break;
         case "application/vnd.lime.select+json":
             ChatComponent = Select;
+            break;
+        case "application/vnd.lime.chatstate+json":
+            ChatComponent = ChatState;
             break;
         default:
             return false;

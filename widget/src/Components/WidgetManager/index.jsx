@@ -5,7 +5,7 @@ import Chat from '../Chat';
 import useWebSocket from 'react-use-websocket';
 import MessageContext from '../../Contexts/Message';
 
-export default (props) => {
+export default props => {
     const [widgetConfiguration, setWidgetConfiguration] = useState();
     const [message, setMessage] = useState();
 
@@ -18,8 +18,8 @@ export default (props) => {
     }, [lastMessage]);
 
     useEffect(() => {
-        if (message && message.type === 'widget-configuration') {
-            setWidgetConfiguration(message.data);
+        if (message && message.to === 'widget') {
+            setWidgetConfiguration(message.content);
         }
     }, [message]);
 

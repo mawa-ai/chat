@@ -7,6 +7,7 @@ import useWebSocket from 'react-use-websocket';
 import MessageContext from '../Contexts/Message';
 import BotContext from '../Contexts/Bot';
 import ThemeContext from '../Contexts/Theme';
+import { UserContextProvider } from '../Contexts/User';
 
 import '../Stylesheets/normalize.scss';
 import '../Stylesheets/global.scss';
@@ -17,6 +18,7 @@ export default () => {
     const [botSettings, setBotSettings] = useState()
     const [message, setMessage] = useState();
     const [sendMessage, setSendMessage] = useState(() => null);
+    const [user, setUser] = useState();
 
     const { parameters } = getUrlParameters("/:botId", ["frame"]);
 
@@ -33,13 +35,16 @@ export default () => {
     }, [lastMessage, sendSocketMessage, readyState]);
 
     useEffect(() => {
-        if (message && message.type) {
-            switch (message.type) {
-                case "chat-theme":
-                    setTheme(message.data);
+        if (message && message.to === "chat" && message.type === "application/json") {
+            switch (message.content.type) {
+                case "theme":
+                    setTheme(message.content.data);
                     break;
                 case "bot-settings":
-                    setBotSettings(message.data);
+                    setBotSettings(message.content.data);
+                    break;
+                case "user":
+                    setUser(message.content.data);
                     break;
                 default:
                     break;
@@ -48,15 +53,17 @@ export default () => {
     }, [message]);
 
     return (
-        theme && botSettings ? (
+        theme && botSettings && user ? (
             <MessageContext.Provider value={{ sendMessage, message }}>
                 <BotContext.Provider value={botSettings}>
                     <ThemeContext.Provider value={theme}>
-                        <div className="chat-container">
-                            <Navbar isFrame={!!parameters.frame} />
-                            <ChatContent isFrame={!!parameters.frame} />
-                            <ChatInput />
-                        </div>
+                        <UserContextProvider value={user}>
+                            <div className="chat-container">
+                                <Navbar isFrame={!!parameters.frame} />
+                                <ChatContent isFrame={!!parameters.frame} />
+                                <ChatInput />
+                            </div>
+                        </UserContextProvider>
                     </ThemeContext.Provider>
                 </BotContext.Provider>
             </MessageContext.Provider>
