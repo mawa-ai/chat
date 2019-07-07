@@ -111,33 +111,29 @@ wsServer.on('request', function (request) {
                     id: id++,
                     from: 'botlegal',
                     to: 'userlegal',
-                    type: 'text/plain',
-                    content: 'How can I help you?'
-                }));
-
-                connection.send(JSON.stringify({
-                    id: id++,
-                    from: 'botlegal',
-                    to: 'userlegal',
-                    type: 'application/vnd.lime.chatstate+json',
+                    type: 'application/vnd.lime.select+json',
                     content: {
-                        state: 'composing'
+                        'scope': 'immediate',
+                        'text': 'Choose an option',
+                        'options': [
+                            {
+                                'text': 'First option'
+                            },
+                            {
+                                'text': 'Second option'
+                            },
+                            {
+                                'text': 'Third option'
+                            },
+                            {
+                                'text': 'Forth option'
+                            },
+                            {
+                                'text': 'Fifth option'
+                            }
+                        ]
                     }
                 }));
-
-
-                setTimeout(() => {
-                    connection.send(JSON.stringify({
-                        id: id++,
-                        from: 'botlegal',
-                        to: 'userlegal',
-                        type: 'text/plain',
-                        content: 'How can I help you? How can I help you? How can I help you? How can I help you? ' +
-                            'How can I help you? How can I help you? How can I help you? How can I help you? ' +
-                            'How can I help you? How can I help you? How can I help you? How can I help you? ' +
-                            'How can I help you? How can I help you? How can I help you? How can I help you? '
-                    }));
-                }, 1000);
             }, 1000);
         }, 1000);
     }

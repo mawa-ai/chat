@@ -6,7 +6,7 @@ export default props => {
     switch (props.content.state) {
         case "composing":
             return (
-                <div class="typing-indicator">
+                <div className="typing-indicator">
                     <span></span>
                     <span></span>
                     <span></span>

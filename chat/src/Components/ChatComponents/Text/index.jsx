@@ -19,7 +19,7 @@ export default memo(props => {
     }
 
     return (
-        <div className={`chat-component text ${side}`} style={style}>
+        <div className={`text ${side}`} style={style}>
             {props.content}
         </div>
     );
