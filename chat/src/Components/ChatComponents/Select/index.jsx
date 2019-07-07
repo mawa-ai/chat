@@ -3,6 +3,8 @@ import Color from 'color';
 import Text from '../Text';
 import ThemeContext from '../../../Contexts/Theme';
 import MessageContext from '../../../Contexts/Message';
+import BotContext from '../../../Contexts/Bot';
+import { UserContext } from '../../../Contexts/User';
 
 import "./style.scss";
 
@@ -21,6 +23,8 @@ const SelectOption = memo(props => {
 
 export default memo(props => {
     const { message, sendMessage } = useContext(MessageContext);
+    const bot = useContext(BotContext);
+    const { user } = useContext(UserContext);
 
     if (props.content.scope === "immediate") {
         const textProps = {
@@ -31,7 +35,9 @@ export default memo(props => {
         const [isOptionSelected, setIsOptionSelected] = useState(false);
         const onSelectOption = option => {
             sendMessage({
-                type: "user-input",
+                from: user.id,
+                to: bot.id,
+                type: "text/plain",
                 content: option.text
             });
             setIsOptionSelected(true);

@@ -2,12 +2,16 @@ import React, { useState, useContext, useEffect } from 'react';
 import Color from 'color';
 import ThemeContext from '../../Contexts/Theme';
 import MessageContext from '../../Contexts/Message';
+import BotContext from '../../Contexts/Bot';
+import { UserContext } from '../../Contexts/User';
 
 import './style.scss';
 
 export default () => {
     const theme = useContext(ThemeContext);
     const { sendMessage } = useContext(MessageContext);
+    const bot = useContext(BotContext);
+    const { user } = useContext(UserContext);
 
     const [themeButtonStyle, setThemeButtonStyle] = useState({});
     const [input, setInput] = useState('');
@@ -22,7 +26,9 @@ export default () => {
     const sendInput = () => {
         if (input.trim()) {
             sendMessage({
-                type: "user-input",
+                from: user.id,
+                to: bot.id,
+                type: "text/plain",
                 content: input.trim()
             });
             setInput('');

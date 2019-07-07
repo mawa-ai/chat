@@ -140,18 +140,10 @@ wsServer.on('request', function (request) {
 
     connection.on('message', function (message) {
         const data = JSON.parse(message.utf8Data);
-        if (data.type === 'user-input') {
-            connection.send(JSON.stringify({
-                id: parseInt(Math.random() * 100000),
-                type: 'text/plain',
-                from: 'userlegal',
-                to: 'botlegal',
-                content: data.content,
-                metadata: {
-                    from: 'user'
-                }
-            }));
-        }
+        connection.send(JSON.stringify({
+            id: parseInt(Math.random() * 100000),
+            ...data
+        }));
     });
 
     connection.on('close', function (reasonCode, description) {
