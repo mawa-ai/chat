@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
+
+    <title>Chat embed</title>
+
+    <link rel='stylesheet' href='../dist/chat-embed.css'>
+    <script src='../dist/chat-embed.js'></script>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        const chat = window.chatEmbed({
+            embed: document.body,
+            receiver: {
+                image: 'https://i.imgur.com/RZQ8tQ9.png',
+                name: 'Jupiter Apple',
+                status: 'online'
+            },
+            theme: {
+                primaryColor: '#f54242'
+            }
+        })
+
+        chat.addReceiver(msg => {
+            if (msg.fromUser) {
+                msg.fromUser = false
+
+                chat.typing();
+
+                setTimeout(() => {
+                    chat.send(msg)
+                }, 1000);
+            }
+        })
+    </script>
+</body>
+
+</html>
