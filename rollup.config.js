@@ -12,7 +12,7 @@ export default {
 	input: 'src/main.ts',
 	output: {
 		sourcemap: true,
-		format: 'iife',
+		format: 'umd',
 		name: 'chatEmbed',
 		file: 'dist/index.js'
 	},
