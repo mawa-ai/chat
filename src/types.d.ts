@@ -21,8 +21,23 @@ type Theme = {
     primaryColor: string
 }
 
+type Widget = {
+    chatOpened?: boolean
+    right: boolean
+    size: string
+    round: string
+    background: string
+    image: string
+    animated: boolean
+    notification: {
+        background: string
+        color: string
+    }
+}
+
 type ChatEmbedConfig = {
     embed: Element
     receiver: Receiver
-    theme: Theme
+    theme: Theme,
+    widget: Widget
 }

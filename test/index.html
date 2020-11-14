@@ -29,6 +29,18 @@
             },
             theme: {
                 primaryColor: '#f54242'
+            },
+            widget: {
+                position: "left",
+                size: "60px",
+                round: "50%",
+                background: "#F0466F",
+                image: "https://i.imgur.com/RZQ8tQ9.png",
+                animated: true,
+                notification: {
+                    background: "#2ECC71",
+                    color: "#FFFFFF",
+                }
             }
         })
 
@@ -39,9 +51,30 @@
                 chat.typing();
 
                 setTimeout(() => {
+                    console.log(msg)
                     chat.send(msg)
                 }, 1000);
             }
+        })
+        
+        chat.send({
+            type: 'text',
+            content: 'teste'
+        })
+
+        chat.send({
+            type: 'text',
+            content: 'teste'
+        })
+
+        chat.send({
+            type: 'text',
+            content: 'teste'
+        })
+
+        chat.send({
+            type: 'text',
+            content: 'teste'
         })
     </script>
 </body>

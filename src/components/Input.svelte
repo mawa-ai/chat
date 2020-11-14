@@ -1,17 +1,18 @@
 <script lang="ts">
     import cssVars from "../render/cssVars";
     import theme from "../store/theme";
-    import ChatController from '../chatController'
+    import ChatController from "../chatController";
 
-    let input: string = "";
+    let input: string = "",
+        width;
 
     const sendInput = () => {
         if (input.trim()) {
             ChatController.send({
-                type: 'text',
+                type: "text",
                 content: input,
                 fromUser: true,
-            })
+            });
 
             input = "";
         }
@@ -27,10 +28,8 @@
         align-items: center;
     }
 
-    @media screen and (max-width: 440px) {
-        .chat-input {
-            flex: 1;
-        }
+    .contained.chat-input {
+        flex: 1;
     }
 
     .chat-input .flat-btn {
@@ -50,11 +49,9 @@
         opacity: 0.5;
     }
 
-    @media screen and (max-width: 440px) {
-        .chat-input .flat-btn {
-            min-width: 70px;
-            height: 70%;
-        }
+    .contained.chat-input .flat-btn {
+        min-width: 70px;
+        height: 70%;
     }
 
     .chat-input .flat-input {
@@ -72,10 +69,8 @@
         outline: 0;
     }
 
-    @media screen and (max-width: 440px) {
-        .chat-input .flat-input {
-            font-size: 1em;
-        }
+    .contained.chat-input .flat-input {
+        font-size: 1em;
     }
 
     .dn {
@@ -83,7 +78,7 @@
     }
 </style>
 
-<div class="chat-input">
+<div class="chat-input" bind:clientWidth={width} class:contained={width < 440}>
     <input
         placeholder="Digite aqui..."
         class="flat-input"

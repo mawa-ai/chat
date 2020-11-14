@@ -4,7 +4,7 @@ const camelToKebab = string =>
 export default (node, props) => {
     const setProperties = () => {
         Object.entries(props).forEach(([key, value]) => {
-            if (value || value === 0) {
+            if (typeof value === 'number' || typeof value === 'string') {
                 node.style.setProperty(`--${camelToKebab(key)}`, value)
             }
         })

@@ -9,7 +9,7 @@
 
 	.chat-container {
 		display: flex;
-		height: 100vh;
+		height: 100%;
 		flex-direction: column;
 		font-family: "Montserrat", sans-serif;
 	}
