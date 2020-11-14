@@ -6,22 +6,23 @@
     import messages from "./store/message";
     import widget from "./store/widget";
 
-    let widget$, hide = true;
+    let widget$, hide = true, readen = 0
 
     const openChat = () => {
-        hide = false;
+        hide = false
+        readen = $messages.length
 
         widget.update((w) => {
-            w.chatOpened = true;
+            w.chatOpened = true
             return w;
         });
-    };
+    }
 
     onMount(() => {
         widget.subscribe((w) => {
             widget$.style.backgroundImage = `url(${w.image})`;
-        });
-    });
+        })
+    })
 </script>
 
 <style>
@@ -98,6 +99,7 @@
     }
 
     .chat-widget-notification {
+		font-family: "Montserrat", sans-serif;
         box-shadow: -3px 3px 10px -5px black;
         border-radius: 50%;
         line-height: 18px;
@@ -106,9 +108,10 @@
         height: 18px;
         position: absolute;
         text-align: center;
-        bottom: 0;
-        right: 0;
-        font-family: "Poppins", sans-serif;
+        bottom: calc(var(--size) - 15%);
+        left: calc(var(--size) - 40%);
+        color: var(--color);
+        background-color: var(--background);
     }
 
     .chat-frame {
@@ -151,11 +154,11 @@
     use:cssVars={$widget}
     bind:this={widget$}
     on:click={openChat}>
-    {#if $messages.length > 0 && $widget.notification !== undefined}
+    {#if $messages.length - readen > 0 && $widget.notification !== undefined}
         <div
             class="chat-widget-notification"
             use:cssVars={$widget.notification}>
-            {$messages.length}
+            {$messages.length - readen}
         </div>
     {/if}
 </div>
