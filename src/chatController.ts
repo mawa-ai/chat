@@ -21,6 +21,10 @@ class ChatController {
         typingStore.set(typing)
     }
 
+    public clear() {
+        messageStore.set([])
+    }
+
     public send(message: Message) {
         if (!message.id) {
             message.id = Math.floor(Date.now() / 1000).toString()
