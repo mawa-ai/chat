@@ -14,7 +14,7 @@ export default {
 		sourcemap: true,
 		format: 'iife',
 		name: 'chatEmbed',
-		file: 'dist/chat-embed.js'
+		file: 'dist/index.js'
 	},
 	plugins: [
 		svelte({
@@ -23,7 +23,7 @@ export default {
 			// we'll extract any component CSS out into
 			// a separate file - better for performance
 			css: css => {
-				css.write('chat-embed.css');
+				css.write('index.css');
 			},
 			preprocess: sveltePreprocess(),
 		}),
