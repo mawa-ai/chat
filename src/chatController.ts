@@ -9,7 +9,10 @@ class ChatController {
     constructor() {
         messageStore.subscribe(msgs => {
             typingStore.set(false)
-            this.receivers.forEach(receiver => receiver({ ...msgs[msgs.length - 1] }))
+
+            try {
+                this.receivers.forEach(receiver => receiver({ ...msgs[msgs.length - 1] }))
+            } catch {}
         })
     }
 
