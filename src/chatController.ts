@@ -12,7 +12,9 @@ class ChatController {
 
             try {
                 this.receivers.forEach(receiver => receiver({ ...msgs[msgs.length - 1] }))
-            } catch {}
+            } catch (e) {
+                console.error(e)
+            }
         })
     }
 
