@@ -1,8 +1,10 @@
 <script context="module">
     import Text from "./Text.svelte";
+    import QuickReply from "./QuickReply.svelte";
 
     const messageComponents = {
-        text: Text
+        text: Text,
+        quick: QuickReply
     };
 </script>
 

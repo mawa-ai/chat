@@ -7,11 +7,11 @@
     let widthSize: number = window.innerWidth;
 
     const closeChat = () => {
-        widget.update(w => {
-            w.chatOpened = false
-            return w
-        })
-    }
+        widget.update((w) => {
+            w.chatOpened = false;
+            return w;
+        });
+    };
 </script>
 
 <style>
@@ -23,7 +23,7 @@
         z-index: 0;
         align-items: center;
         background-color: var(--primary-color);
-		height: 4rem;
+        height: 4rem;
     }
 
     .receiver-image-container {
@@ -33,7 +33,7 @@
     }
 
     .receiver-image {
-		height: 80%;
+        height: 80%;
         border-radius: 100%;
         margin-right: 15px;
     }

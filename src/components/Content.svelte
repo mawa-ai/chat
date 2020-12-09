@@ -4,11 +4,10 @@
     import Typing from "./chat/Typing.svelte";
     import Message from "./chat/Message.svelte";
 
-    let chat
+    let chat;
 
     const scrollTo = (element, to, duration) => {
-        if (duration <= 0 || element.scrollTop === to)
-            return;
+        if (duration <= 0 || element.scrollTop === to) return;
 
         var difference = to - element.scrollTop;
         var perTick = (difference / duration) * 10;
@@ -21,9 +20,9 @@
 
     messages.subscribe(() => {
         if (chat) {
-            scrollTo(chat, chat.scrollHeight, 300)
+            scrollTo(chat, chat.scrollHeight, 300);
         }
-    })
+    });
 </script>
 
 <style>

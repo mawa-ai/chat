@@ -29,9 +29,6 @@
     }
 </style>
 
-<div
-    class="text"
-    class:user={message.fromUser}
-    use:cssVars={$theme}>
+<div class="text" class:user={message.fromUser} use:cssVars={$theme}>
     {message.content}
 </div>

@@ -1,13 +1,12 @@
 type PlainText = string
-type QuickReply = {
-    text: PlainText,
-    options: string[]
-}
+type QuickReply = string[]
+
+type MessageContent = PlainText | QuickReply
 
 type Message = {
     id?: string
     type: string
-    content: QuickReply | PlainText
+    content: MessageContent
     fromUser: boolean
 }
 

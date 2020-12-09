@@ -1,5 +1,6 @@
 import messageStore from './store/message'
 import typingStore from './store/typing'
+import inputStore from './store/input'
 
 type Receiver = (message: Message) => void;
 
@@ -28,6 +29,10 @@ class ChatController {
 
     public clear() {
         messageStore.set([])
+    }
+
+    public setInput(show: boolean) {
+        inputStore.set(show)
     }
 
     public send(message: Message) {

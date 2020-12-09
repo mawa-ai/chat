@@ -6,23 +6,25 @@
     import messages from "./store/message";
     import widget from "./store/widget";
 
-    let widget$, hide = true, readen = 0
+    let widget$,
+        hide = true,
+        readen = 0;
 
     const openChat = () => {
-        hide = false
-        readen = $messages.length
+        hide = false;
+        readen = $messages.length;
 
         widget.update((w) => {
-            w.chatOpened = true
+            w.chatOpened = true;
             return w;
         });
-    }
+    };
 
     onMount(() => {
         widget.subscribe((w) => {
             widget$.style.backgroundImage = `url(${w.image})`;
-        })
-    })
+        });
+    });
 </script>
 
 <style>
@@ -99,7 +101,7 @@
     }
 
     .chat-widget-notification {
-		font-family: "Montserrat", sans-serif;
+        font-family: "Montserrat", sans-serif;
         box-shadow: -3px 3px 10px -5px black;
         border-radius: 50%;
         line-height: 18px;
@@ -141,8 +143,7 @@
     class:hide={!$widget.chatOpened}
     class:animated={$widget.animated}
     class:right={$widget.right}
-    class:dn={hide}
->
+    class:dn={hide}>
     <Chat />
 </div>
 

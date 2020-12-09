@@ -77,8 +77,16 @@
             content: 'teste'
         })
 
+        chat.send({
+            type: 'quick',
+            content: ['Bom dia', 'Boa tarde', 'Boa noite', 'Bonjour', 'Buenos dias']
+        })
+
+        chat.setInput(false)
+
         setTimeout(() => {
             chat.clear()
+            chat.setInput(true)
         }, 10000);
     </script>
 </body>

@@ -1,20 +1,21 @@
 <script lang="ts">
     import cssVars from "../render/cssVars";
     import theme from "../store/theme";
-    import ChatController from "../chatController";
+    import chatController from "../chatController";
+    import showInput from "../store/input";
 
-    let input: string = "",
+    let content: string = "",
         width;
 
-    const sendInput = () => {
-        if (input.trim()) {
-            ChatController.send({
+    const sendContent = () => {
+        if (content.trim()) {
+            chatController.send({
                 type: "text",
-                content: input,
+                content: content,
                 fromUser: true,
             });
 
-            input = "";
+            content = "";
         }
     };
 </script>
@@ -78,18 +79,23 @@
     }
 </style>
 
-<div class="chat-input" bind:clientWidth={width} class:contained={width < 440}>
-    <input
-        placeholder="Digite aqui..."
-        class="flat-input"
-        type="text"
-        bind:value={input}
-        on:keydown={(e) => e.key === 'Enter' && sendInput()} />
-    <button
-        class:dn={!input.trim()}
-        class="flat-btn"
-        on:click={sendInput}
-        use:cssVars={$theme}>
-        Enviar
-    </button>
-</div>
+{#if $showInput}
+    <div
+        class="chat-input"
+        bind:clientWidth={width}
+        class:contained={width < 440}>
+        <input
+            placeholder="Digite aqui..."
+            class="flat-input"
+            type="text"
+            bind:value={content}
+            on:keydown={(e) => e.key === 'Enter' && sendContent()} />
+        <button
+            class:dn={!content.trim()}
+            class="flat-btn"
+            on:click={sendContent}
+            use:cssVars={$theme}>
+            Enviar
+        </button>
+    </div>
+{/if}
