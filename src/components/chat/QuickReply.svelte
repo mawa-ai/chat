@@ -41,7 +41,6 @@
     .select-options {
         display: flex;
         flex-wrap: wrap;
-        overflow: hidden;
         user-select: none;
     }
 
