@@ -33,5 +33,5 @@ export default (props: ChatEmbedConfig) => {
 		})
 	}
 
-	return new ChatController
+	return ChatController
 };

@@ -4,7 +4,7 @@ import inputStore from './store/input'
 
 type Receiver = (message: Message) => void;
 
-export default class ChatController {
+export class ChatController {
     private readonly receivers: Receiver[] = [];
 
     constructor() {
@@ -50,3 +50,5 @@ export default class ChatController {
         messageStore.update(m => [...m, message])
     }
 }
+
+export default new ChatController
