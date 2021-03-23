@@ -1,19 +1,22 @@
 type PlainText = string
 type QuickReply = string[]
 
-type MessageContent = PlainText | QuickReply
+type MessageTypes = {
+    text: PlainText
+    quick: QuickReply
+}
 
 type Message = {
     id?: string
-    type: string
-    content: MessageContent
-    fromUser: boolean
+    type: keyof MessageTypes
+    content: MessageTypes[keyof MessageTypes]
+    fromUser?: boolean
 }
 
 type Receiver = {
     image: string
     name: string
-    status: string,
+    status: string
     round: string
 }
 
@@ -38,6 +41,6 @@ type Widget = {
 type ChatEmbedConfig = {
     embed: Element
     receiver: Receiver
-    theme: Theme,
+    theme: Theme
     widget: Widget
 }

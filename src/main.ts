@@ -1,9 +1,9 @@
-import Chat from './Chat.svelte';
-import Widget from './Widget.svelte';
+import Chat from './Chat.svelte'
+import Widget from './Widget.svelte'
 import themeStore from './store/theme'
 import receiverStore from './store/receiver'
 import widgetStore from './store/widget'
-import ChatController from './chatController';
+import ChatController from './chatController'
 
 export default (props: ChatEmbedConfig) => {
 	const {
@@ -33,5 +33,5 @@ export default (props: ChatEmbedConfig) => {
 		})
 	}
 
-	return ChatController
+	return new ChatController
 };

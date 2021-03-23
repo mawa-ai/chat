@@ -4,7 +4,7 @@ import inputStore from './store/input'
 
 type Receiver = (message: Message) => void;
 
-class ChatController {
+export default class ChatController {
     private readonly receivers: Receiver[] = [];
 
     constructor() {
@@ -36,6 +36,13 @@ class ChatController {
     }
 
     public send(message: Message) {
+        if (typeof message === 'string') {
+            message = {
+                type: 'text',
+                content: message,
+            }
+        }
+
         if (!message.id) {
             message.id = Math.floor(Date.now() / 1000).toString()
         }
@@ -43,5 +50,3 @@ class ChatController {
         messageStore.update(m => [...m, message])
     }
 }
-
-export default new ChatController;
