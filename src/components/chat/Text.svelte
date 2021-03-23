@@ -5,6 +5,10 @@
     export let message: Message;
 </script>
 
+<div class="text" class:user={message.fromUser} use:cssVars={$theme}>
+    {message.content}
+</div>
+
 <style>
     .text {
         max-width: 85%;
@@ -28,7 +32,3 @@
         align-self: flex-end;
     }
 </style>
-
-<div class="text" class:user={message.fromUser} use:cssVars={$theme}>
-    {message.content}
-</div>

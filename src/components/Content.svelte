@@ -25,6 +25,16 @@
     });
 </script>
 
+<div class="chat-content" bind:this={chat}>
+    {#each $messages as message}
+        <Message {message} />
+    {/each}
+
+    {#if $typing}
+        <Typing />
+    {/if}
+</div>
+
 <style>
     .chat-content {
         flex: 9;
@@ -32,6 +42,7 @@
         flex-direction: column;
         padding: 10px 1rem;
         overflow: auto;
+        background-color: white;
     }
 
     ::-webkit-scrollbar {
@@ -53,13 +64,3 @@
         border-radius: 100px;
     }
 </style>
-
-<div class="chat-content" bind:this={chat}>
-    {#each $messages as message}
-        <Message {message} />
-    {/each}
-
-    {#if $typing}
-        <Typing />
-    {/if}
-</div>

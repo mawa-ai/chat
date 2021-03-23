@@ -4,6 +4,12 @@
 	import Input from "./components/Input.svelte";
 </script>
 
+<div class="chat-container">
+	<Navbar />
+	<Content />
+	<Input />
+</div>
+
 <style>
 	@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 
@@ -14,9 +20,3 @@
 		font-family: "Montserrat", sans-serif;
 	}
 </style>
-
-<div class="chat-container">
-	<Navbar />
-	<Content />
-	<Input />
-</div>

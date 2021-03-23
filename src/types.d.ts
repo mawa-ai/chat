@@ -13,7 +13,8 @@ type Message = {
 type Receiver = {
     image: string
     name: string
-    status: string
+    status: string,
+    round: string
 }
 
 type Theme = {

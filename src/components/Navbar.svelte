@@ -14,6 +14,32 @@
     };
 </script>
 
+<div class="chat-navbar" use:cssVars={$theme} bind:clientWidth={widthSize}>
+    {#if widthSize < 440}
+        <div
+            class="receiver-image-container"
+            use:cssVars={{ round: $receiver.round }}
+        >
+            <img
+                class="receiver-image"
+                src={$receiver.image}
+                alt="Chat receiver"
+            />
+        </div>
+        {#if $receiver.name || $receiver.status}
+            <div class="receiver-details">
+                <span class="receiver-name">{$receiver.name}</span>
+                <span class="receiver-status">{$receiver.status}</span>
+            </div>
+        {/if}
+        {#if $widget !== undefined}
+            <div class="close" on:click={closeChat} />
+        {/if}
+    {:else}
+        <span class="receiver-talk"> Fale com {$receiver.name}</span>
+    {/if}
+</div>
+
 <style>
     .chat-navbar {
         padding: 0px 5%;
@@ -34,7 +60,7 @@
 
     .receiver-image {
         height: 80%;
-        border-radius: 100%;
+        border-radius: var(--round);
         margin-right: 15px;
     }
 
@@ -67,21 +93,3 @@
         cursor: pointer;
     }
 </style>
-
-<div class="chat-navbar" use:cssVars={$theme} bind:clientWidth={widthSize}>
-    {#if widthSize < 440}
-        <div class="receiver-image-container">
-            <img
-                class="receiver-image"
-                src={$receiver.image}
-                alt="Chat receiver" />
-        </div>
-        <div class="receiver-details">
-            <span class="receiver-name">{$receiver.name}</span>
-            <span class="receiver-status">{$receiver.status}</span>
-        </div>
-        {#if $widget !== undefined}
-            <div class="close" on:click={closeChat} />
-        {/if}
-    {:else}<span class="receiver-talk"> Fale com {$receiver.name} </span>{/if}
-</div>

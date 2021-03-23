@@ -27,6 +27,35 @@
     });
 </script>
 
+<div
+    class="chat-frame part"
+    class:hide={!$widget.chatOpened}
+    class:animated={$widget.animated}
+    class:right={$widget.right}
+    class:dn={hide}
+>
+    <Chat />
+</div>
+
+<div
+    class="chat-widget part"
+    class:right={$widget.right}
+    class:animated={$widget.animated}
+    class:hide={$widget.chatOpened}
+    use:cssVars={$widget}
+    bind:this={widget$}
+    on:click={openChat}
+>
+    {#if $messages.length - readen > 0 && $widget.notification !== undefined}
+        <div
+            class="chat-widget-notification"
+            use:cssVars={$widget.notification}
+        >
+            {$messages.length - readen}
+        </div>
+    {/if}
+</div>
+
 <style>
     @keyframes widget-slide-in {
         from {
@@ -62,7 +91,7 @@
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
-        height: var(--size);
+        padding-top: var(--size);
         width: var(--size);
         border-radius: var(--round);
         background-color: var(--background);
@@ -137,29 +166,3 @@
         }
     }
 </style>
-
-<div
-    class="chat-frame part"
-    class:hide={!$widget.chatOpened}
-    class:animated={$widget.animated}
-    class:right={$widget.right}
-    class:dn={hide}>
-    <Chat />
-</div>
-
-<div
-    class="chat-widget part"
-    class:right={$widget.right}
-    class:animated={$widget.animated}
-    class:hide={$widget.chatOpened}
-    use:cssVars={$widget}
-    bind:this={widget$}
-    on:click={openChat}>
-    {#if $messages.length - readen > 0 && $widget.notification !== undefined}
-        <div
-            class="chat-widget-notification"
-            use:cssVars={$widget.notification}>
-            {$messages.length - readen}
-        </div>
-    {/if}
-</div>

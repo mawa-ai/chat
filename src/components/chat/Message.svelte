@@ -4,7 +4,7 @@
 
     const messageComponents = {
         text: Text,
-        quick: QuickReply
+        quick: QuickReply,
     };
 </script>
 

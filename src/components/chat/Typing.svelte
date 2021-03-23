@@ -1,3 +1,5 @@
+<div class="typing-indicator"><span /> <span /> <span /></div>
+
 <style>
     .typing-indicator {
         background-color: #eeeeee;
@@ -45,5 +47,3 @@
         }
     }
 </style>
-
-<div class="typing-indicator"><span /> <span /> <span /></div>

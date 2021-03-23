@@ -23,6 +23,20 @@
     });
 </script>
 
+{#if !hide}
+    <div class="select-options">
+        {#each message.content as option}
+            <div
+                class="option"
+                use:cssVars={$theme}
+                on:click={() => onSelect(option)}
+            >
+                {option}
+            </div>
+        {/each}
+    </div>
+{/if}
+
 <style>
     .select-options {
         display: flex;
@@ -43,16 +57,3 @@
         margin: 0px 5px 5px 0px;
     }
 </style>
-
-{#if !hide}
-    <div class="select-options">
-        {#each message.content as option}
-            <div
-                class="option"
-                use:cssVars={$theme}
-                on:click={() => onSelect(option)}>
-                {option}
-            </div>
-        {/each}
-    </div>
-{/if}

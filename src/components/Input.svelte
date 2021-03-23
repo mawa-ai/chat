@@ -20,6 +20,30 @@
     };
 </script>
 
+{#if $showInput}
+    <div
+        class="chat-input"
+        bind:clientWidth={width}
+        class:contained={width < 440}
+    >
+        <input
+            placeholder="Digite aqui..."
+            class="flat-input"
+            type="text"
+            bind:value={content}
+            on:keydown={(e) => e.key === "Enter" && sendContent()}
+        />
+        <button
+            class:dn={!content.trim()}
+            class="flat-btn"
+            on:click={sendContent}
+            use:cssVars={$theme}
+        >
+            Enviar
+        </button>
+    </div>
+{/if}
+
 <style>
     .chat-input {
         padding: 0px 5%;
@@ -78,24 +102,3 @@
         display: none;
     }
 </style>
-
-{#if $showInput}
-    <div
-        class="chat-input"
-        bind:clientWidth={width}
-        class:contained={width < 440}>
-        <input
-            placeholder="Digite aqui..."
-            class="flat-input"
-            type="text"
-            bind:value={content}
-            on:keydown={(e) => e.key === 'Enter' && sendContent()} />
-        <button
-            class:dn={!content.trim()}
-            class="flat-btn"
-            on:click={sendContent}
-            use:cssVars={$theme}>
-            Enviar
-        </button>
-    </div>
-{/if}
