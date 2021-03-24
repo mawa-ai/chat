@@ -7,11 +7,9 @@
     import widget from "./store/widget";
 
     let widget$,
-        hide = true,
         readen = 0;
 
     const openChat = () => {
-        hide = false;
         readen = $messages.length;
 
         widget.update((w) => {
@@ -32,7 +30,7 @@
     class:hide={!$widget.chatOpened}
     class:animated={$widget.animated}
     class:right={$widget.right}
-    class:dn={hide}
+    class:dn={!$widget.chatOpened}
 >
     <Chat />
 </div>

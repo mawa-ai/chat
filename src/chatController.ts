@@ -1,6 +1,7 @@
 import messageStore from './store/message'
 import typingStore from './store/typing'
 import inputStore from './store/input'
+import widgetStore from './store/widget'
 
 type Receiver = (message: Message) => void;
 
@@ -25,6 +26,13 @@ export class ChatController {
 
     public typing(typing: boolean = true) {
         typingStore.set(typing)
+    }
+
+    public toggle(forcedValue?: boolean) {
+        widgetStore.update((w) => {
+            w.chatOpened = forcedValue === undefined ? !w.chatOpened : forcedValue;
+            return w;
+        });
     }
 
     public clear() {
