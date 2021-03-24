@@ -40,7 +40,7 @@
         flex: 9;
         display: flex;
         flex-direction: column;
-        padding: 10px 1rem;
+        padding: 10px 16px;
         overflow: auto;
         background-color: white;
     }

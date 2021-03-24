@@ -63,7 +63,7 @@
         color: white;
         flex: 2;
         border-radius: 100px;
-        font-size: 1em;
+        font-size: 16px;
         cursor: pointer;
         min-width: 100px;
         background-color: var(--primary-color);
@@ -86,7 +86,7 @@
         flex: 10;
         padding-right: 5%;
         color: #2e2d33;
-        font-size: 1.3em;
+        font-size: 20px;
         box-sizing: border-box;
     }
 
@@ -95,7 +95,7 @@
     }
 
     .contained.chat-input .flat-input {
-        font-size: 1em;
+        font-size: 16px;
     }
 
     .dn {

@@ -42,6 +42,7 @@
         display: flex;
         flex-wrap: wrap;
         user-select: none;
+        font-size: 16px;
     }
 
     .option {

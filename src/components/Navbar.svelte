@@ -49,7 +49,7 @@
         z-index: 0;
         align-items: center;
         background-color: var(--primary-color);
-        height: 4rem;
+        height: 64px;
     }
 
     .receiver-image-container {
@@ -70,8 +70,12 @@
         color: white;
     }
 
+    .receiver-name {
+        font-size: 16px;
+    }
+
     .receiver-status {
-        font-size: 0.8em;
+        font-size: 14px;
     }
 
     .receiver-talk {

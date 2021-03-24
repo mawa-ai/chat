@@ -11,13 +11,13 @@
 
 <style>
     .text {
+        font-size: 16px;
         max-width: 85%;
         border-radius: 16px;
         margin: 0px 0px 12px 0px;
         padding: 14px;
         width: fit-content;
         box-sizing: border-box;
-        word-break: break-all;
     }
 
     .text:not(.user) {
