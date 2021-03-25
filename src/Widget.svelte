@@ -1,28 +1,22 @@
 <script>
-    import { onMount } from "svelte";
-
     import Chat from "./Chat.svelte";
     import cssVars from "./render/cssVars";
     import messages from "./store/message";
     import widget from "./store/widget";
 
-    let widget$,
-        readen = 0;
+    let widget$, readen = 0;
 
-    const openChat = () => {
-        readen = $messages.length;
+    $: {
+        if ($widget.chatOpened) {
+            readen = $messages.length
+        }
+    }
 
-        widget.update((w) => {
-            w.chatOpened = true;
-            return w;
-        });
-    };
-
-    onMount(() => {
-        widget.subscribe((w) => {
-            widget$.style.backgroundImage = `url(${w.image})`;
-        });
-    });
+    $: {
+        if (widget$) {
+            widget$.style.backgroundImage = `url(${$widget.image})`;
+        }
+    }
 </script>
 
 <div
@@ -42,7 +36,7 @@
     class:hide={$widget.chatOpened}
     use:cssVars={$widget}
     bind:this={widget$}
-    on:click={openChat}
+    on:click={() => ($widget.chatOpened = true)}
 >
     {#if $messages.length - readen > 0 && $widget.notification !== undefined}
         <div
