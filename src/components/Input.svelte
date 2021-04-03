@@ -4,8 +4,7 @@
     import chatController from "../chatController";
     import showInput from "../store/input";
 
-    let content: string = "",
-        width;
+    let content: string = "";
 
     const sendContent = () => {
         if (content.trim()) {
@@ -21,11 +20,7 @@
 </script>
 
 {#if $showInput}
-    <div
-        class="chat-input"
-        bind:clientWidth={width}
-        class:contained={width < 440}
-    >
+    <div class="chat-input">
         <input
             placeholder="Digite aqui..."
             class="flat-input"
@@ -53,10 +48,6 @@
         align-items: center;
     }
 
-    .contained.chat-input {
-        flex: 1;
-    }
-
     .chat-input .flat-btn {
         height: 50%;
         border: 0;
@@ -74,11 +65,6 @@
         opacity: 0.5;
     }
 
-    .contained.chat-input .flat-btn {
-        min-width: 70px;
-        height: 70%;
-    }
-
     .chat-input .flat-input {
         height: 100%;
         border: 0;
@@ -94,8 +80,19 @@
         outline: 0;
     }
 
-    .contained.chat-input .flat-input {
-        font-size: 16px;
+    @media screen and (max-width: 400px) {
+        .chat-input .flat-input {
+            font-size: 16px;
+        }
+
+        .chat-input .flat-btn {
+            min-width: 70px;
+            height: 70%;
+        }
+
+        .chat-input {
+            flex: 1;
+        }
     }
 
     .dn {
