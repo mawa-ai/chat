@@ -4,7 +4,7 @@
     import cssVars from "../render/cssVars";
     import theme from "../store/theme";
 
-    let widthSize: number = window.innerWidth;
+    let widthSize: number;
 
     const closeChat = () => {
         widget.update((w) => {
