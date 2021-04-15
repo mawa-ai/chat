@@ -6,7 +6,7 @@
     export const send = chatController.send.bind(chatController);
 </script>
 
-<script>
+<script lang="ts">
     import Chat from "./Chat.svelte";
     import Widget from "./Widget.svelte";
     import themeStore from "./store/theme";
@@ -15,19 +15,19 @@
     import chatController from "./chatController";
     import { createEventDispatcher } from "svelte";
 
-    export let theme = undefined;
-    export let receiver = undefined;
-    export let widget = undefined;
+    export let theme: Theme = undefined;
+    export let receiver: Receiver = undefined;
+    export let widget: Widget = undefined;
 
-    $: theme && ($themeStore = theme);
-    $: receiver && ($receiverStore = receiver);
-    $: widget && ($widgetStore = widget);
+    $: theme && ($themeStore = { ...$themeStore, ...theme });
+    $: receiver && ($receiverStore = { ...$receiverStore, ...receiver });
+    $: widget && ($widgetStore = { ...$widgetStore, ...widget });
 
     const dispatch = createEventDispatcher();
     chatController.addReceiver((message) => dispatch("message", message));
 </script>
 
-{#if $widgetStore}
+{#if widget}
     <Widget />
 {:else}
     <Chat />

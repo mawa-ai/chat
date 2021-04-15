@@ -18,6 +18,7 @@ type Receiver = {
     name: string
     status: string
     round: string
+    preventShrink: boolean
 }
 
 type Theme = {

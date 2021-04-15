@@ -15,7 +15,7 @@
 </script>
 
 <div class="chat-navbar" use:cssVars={$theme} bind:clientWidth={widthSize}>
-    {#if widthSize < 440}
+    {#if widthSize < 440 || $receiver.preventShrink}
         <div
             class="receiver-image-container"
             use:cssVars={{ round: $receiver.round }}
