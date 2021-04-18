@@ -33,6 +33,7 @@ type Widget = {
     background: string
     image: string
     animated: boolean
+    popupMessage: string
     notification: {
         background: string
         color: string

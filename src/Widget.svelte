@@ -4,11 +4,12 @@
     import messages from "./store/message";
     import widget from "./store/widget";
 
-    let widget$, readen = 0;
+    let widget$,
+        readen = 0;
 
     $: {
         if ($widget.chatOpened) {
-            readen = $messages.length
+            readen = $messages.length;
         }
     }
 
@@ -44,6 +45,12 @@
             use:cssVars={$widget.notification}
         >
             {$messages.length - readen}
+        </div>
+    {/if}
+
+    {#if $widget.popupMessage}
+        <div class="message-popup">
+            {$widget.popupMessage}
         </div>
     {/if}
 </div>
@@ -109,11 +116,28 @@
         animation-name: widget-slide-in;
     }
 
-    .right {
+    :not(.animated).hide {
+        display: none;
+    }
+
+    .message-popup {
+        box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.2);
+        background-color: white;
+        padding: 10px;
+        position: absolute;
+        font-size: 12px;
+        left: 75px;
+        top: 0;
+        width: max-content;
+        max-width: min(300px, calc(75vw - 100%));
+        font-family: "Montserrat", sans-serif;
+    }
+
+    .part.right {
         right: 25px;
     }
 
-    :not(.right) {
+    .part:not(.right) {
         left: 25px;
     }
 

@@ -5,6 +5,7 @@
     import showInput from "../store/input";
 
     let content: string = "";
+    let width: number;
 
     const sendContent = () => {
         if (content.trim()) {
@@ -20,7 +21,11 @@
 </script>
 
 {#if $showInput}
-    <div class="chat-input">
+    <div
+        class="chat-input"
+        bind:clientWidth={width}
+        class:contained={width < 440}
+    >
         <input
             placeholder="Digite aqui..."
             class="flat-input"
@@ -43,7 +48,7 @@
     .chat-input {
         padding: 0px 5%;
         display: flex;
-        flex: 2;
+        flex: 1;
         background-color: #ebecf3;
         align-items: center;
     }
@@ -80,19 +85,17 @@
         outline: 0;
     }
 
-    @media screen and (max-width: 400px) {
-        .chat-input .flat-input {
-            font-size: 16px;
-        }
+    .contained.chat-input .flat-input {
+        font-size: 16px;
+    }
 
-        .chat-input .flat-btn {
-            min-width: 70px;
-            height: 70%;
-        }
+    .contained.chat-input .flat-btn {
+        min-width: 70px;
+        height: 70%;
+    }
 
-        .chat-input {
-            flex: 1;
-        }
+    .contained.chat-input {
+        flex: 1;
     }
 
     .dn {

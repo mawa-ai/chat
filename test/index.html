@@ -7,7 +7,7 @@
 
     <title>Chat embed</title>
 
-    <script src='../dist/index.js'></script>
+    <script src='../dist/index.iife.js'></script>
 
     <style>
         html,
@@ -38,6 +38,7 @@
                 background: "#f54242",
                 image: "https://i.imgur.com/RZQ8tQ9.png",
                 animated: true,
+                popupMessage: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit!',
                 notification: {
                     background: "#f54242",
                     color: "#FFFFFF",
@@ -57,7 +58,7 @@
                 }, 1000);
             }
         })
-        
+
         chat.send({
             type: 'text',
             content: 'teste'
