@@ -132,11 +132,11 @@
     }
 
     :not(.right) .message-popup-container {
-        right: calc(--size + 10px);
+        right: calc(var(--size) + 10px);
     }
 
     .right .message-popup-container {
-        right: calc(--size + 10px);
+        right: calc(var(--size) + 10px);
         justify-content: flex-end;
     }
 
