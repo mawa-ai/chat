@@ -132,11 +132,11 @@
     }
 
     :not(.right) .message-popup-container {
-        left: 75px;
+        right: calc(--size + 10px);
     }
 
     .right .message-popup-container {
-        right: 75px;
+        right: calc(--size + 10px);
         justify-content: flex-end;
     }
 
