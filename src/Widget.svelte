@@ -49,8 +49,10 @@
     {/if}
 
     {#if $widget.popupMessage}
-        <div class="message-popup">
-            {$widget.popupMessage}
+        <div class="message-popup-container">
+            <div class="message-popup">
+                {$widget.popupMessage}
+            </div>
         </div>
     {/if}
 </div>
@@ -120,16 +122,30 @@
         display: none;
     }
 
+    .message-popup-container {
+        height: 100%;
+        position: absolute;
+        top: 0;
+        display: flex;
+        align-items: center;
+        max-width: min(300px, calc(75vw - 100%));
+    }
+
+    :not(.right) .message-popup-container {
+        left: 75px;
+    }
+
+    .right .message-popup-container {
+        right: 75px;
+        justify-content: flex-end;
+    }
+
     .message-popup {
         box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.2);
         background-color: white;
         padding: 10px;
-        position: absolute;
         font-size: 12px;
-        left: 75px;
-        top: 0;
         width: max-content;
-        max-width: min(300px, calc(75vw - 100%));
         font-family: "Montserrat", sans-serif;
     }
 
