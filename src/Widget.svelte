@@ -18,6 +18,11 @@
             widget$.style.backgroundImage = `url(${$widget.image})`;
         }
     }
+
+    const openChat = () => {
+        $widget.chatOpened = true;
+        $widget.popupMessage = undefined;
+    };
 </script>
 
 <div
@@ -37,7 +42,7 @@
     class:hide={$widget.chatOpened}
     use:cssVars={$widget}
     bind:this={widget$}
-    on:click={() => ($widget.chatOpened = true)}
+    on:click={openChat}
 >
     {#if $messages.length - readen > 0 && $widget.notification !== undefined}
         <div
