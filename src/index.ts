@@ -4,6 +4,7 @@ import themeStore from './store/theme'
 import receiverStore from './store/receiver'
 import widgetStore from './store/widget'
 import ChatController from './chatController'
+import type { ChatEmbedConfig } from './types'
 
 export default (props: ChatEmbedConfig) => {
 	const {

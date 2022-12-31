@@ -1,14 +1,15 @@
-<script context="module">
+<script context="module" lang="ts">
     import Text from "./Text.svelte";
     import QuickReply from "./QuickReply.svelte";
+    import type { Message } from "../../types";
 
     const messageComponents = {
         text: Text,
-        quick: QuickReply,
+        'quick-reply': QuickReply,
     };
 </script>
 
-<script type="ts">
+<script lang="ts">
     export let message: Message;
 </script>
 

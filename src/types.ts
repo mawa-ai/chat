@@ -1,19 +1,19 @@
-type PlainText = string
-type QuickReply = string[]
+export type PlainText = string
+export type QuickReply = string[]
 
-type MessageTypes = {
+export type MessageTypes = {
     text: PlainText
     quick: QuickReply
 }
 
-type Message = {
+export type Message = {
     id?: string
     type: keyof MessageTypes
     content: MessageTypes[keyof MessageTypes]
     fromUser?: boolean
 }
 
-type Receiver = {
+export type Receiver = {
     image: string
     name: string
     status: string
@@ -21,11 +21,11 @@ type Receiver = {
     preventShrink: boolean
 }
 
-type Theme = {
+export type Theme = {
     primaryColor: string
 }
 
-type Widget = {
+export type Widget = {
     chatOpened?: boolean
     right: boolean
     size: string
@@ -33,16 +33,16 @@ type Widget = {
     background: string
     image: string
     animated: boolean
-    popupMessage: string
-    notification: {
+    popupMessage?: string
+    notification?: {
         background: string
         color: string
     }
 }
 
-type ChatEmbedConfig = {
+export type ChatEmbedConfig = {
     embed: Element
     receiver: Receiver
     theme: Theme
-    widget: Widget
+    widget?: Widget
 }

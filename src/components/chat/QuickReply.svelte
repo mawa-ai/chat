@@ -3,6 +3,7 @@
     import cssVars from "../../render/cssVars";
     import chatController from "../../chatController";
     import messages from "../../store/message";
+    import type { Message } from "../../types";
 
     export let message: Message;
 

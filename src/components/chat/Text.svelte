@@ -1,6 +1,7 @@
 <script lang="ts">
     import theme from "../../store/theme";
     import cssVars from "../../render/cssVars";
+    import type { Message } from "../../types";
 
     export let message: Message;
 </script>

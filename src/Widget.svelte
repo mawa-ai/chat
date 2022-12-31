@@ -4,18 +4,11 @@
     import messages from "./store/message";
     import widget from "./store/widget";
 
-    let widget$,
-        readen = 0;
+    let readen = 0;
 
     $: {
         if ($widget.chatOpened) {
             readen = $messages.length;
-        }
-    }
-
-    $: {
-        if (widget$) {
-            widget$.style.backgroundImage = `url(${$widget.image})`;
         }
     }
 
@@ -41,7 +34,7 @@
     class:animated={$widget.animated}
     class:hide={$widget.chatOpened}
     use:cssVars={$widget}
-    bind:this={widget$}
+    style:background-image="url({$widget.image})"
     on:click={openChat}
 >
     {#if $messages.length - readen > 0 && $widget.notification !== undefined}
@@ -137,7 +130,7 @@
     }
 
     :not(.right) .message-popup-container {
-        right: calc(var(--size) + 10px);
+        left: calc(var(--size) + 10px);
     }
 
     .right .message-popup-container {

@@ -14,6 +14,7 @@
     import widgetStore from "./store/widget";
     import chatController from "./chatController";
     import { createEventDispatcher } from "svelte";
+    import type { Receiver, Theme } from "./types";
 
     export let theme: Theme = undefined;
     export let receiver: Receiver = undefined;
@@ -27,7 +28,7 @@
     chatController.addReceiver((message) => dispatch("message", message));
 </script>
 
-{#if widget}
+{#if $widgetStore}
     <Widget />
 {:else}
     <Chat />

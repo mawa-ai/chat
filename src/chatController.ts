@@ -2,6 +2,7 @@ import messageStore from './store/message'
 import typingStore from './store/typing'
 import inputStore from './store/input'
 import widgetStore from './store/widget'
+import type { Message } from './types';
 
 type Receiver = (message: Message) => void;
 
