@@ -4,6 +4,7 @@
     import chatController from "../../chatController";
     import messages from "../../store/message";
     import type { Message } from "../../types";
+    import Text from "./Text.svelte";
 
     export let message: Message;
 
@@ -24,9 +25,10 @@
     });
 </script>
 
+<Text message={{ ...message, content: message.content.text }} />
 {#if !hide}
     <div class="select-options">
-        {#each message.content as option}
+        {#each message.content.options as option}
             <div
                 class="option"
                 use:cssVars={$theme}

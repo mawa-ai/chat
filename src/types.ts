@@ -1,5 +1,8 @@
 export type PlainText = string
-export type QuickReply = string[]
+export type QuickReply = {
+    text: string
+    options: string[]
+}
 
 export type MessageTypes = {
     text: PlainText
