@@ -2,9 +2,10 @@
 	import Navbar from "./components/Navbar.svelte";
 	import Content from "./components/Content.svelte";
 	import Input from "./components/Input.svelte";
+	import widget from './store/widget';
 </script>
 
-<div class="chat-container">
+<div class="chat-container" style:position={$widget ? 'fixed' : 'static'}>
 	<Navbar />
 	<Content />
 	<Input />
@@ -14,7 +15,6 @@
 	@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 
 	.chat-container {
-        position: fixed;
 		display: flex;
 		height: 100%;
 		width: 100%;

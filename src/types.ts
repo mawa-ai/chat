@@ -17,11 +17,12 @@ export type Message = {
 }
 
 export type Receiver = {
-    image: string
-    name: string
-    status: string
-    round: string
-    preventShrink: boolean
+    image?: string
+    name?: string
+    status?: string
+    round?: string
+    preventShrink?: boolean
+    talkWithText?: string
 }
 
 export type Theme = {
@@ -45,7 +46,7 @@ export type Widget = {
 
 export type ChatEmbedConfig = {
     embed: Element
-    receiver: Receiver
-    theme: Theme
+    receiver?: Receiver
+    theme?: Theme
     widget?: Widget
 }

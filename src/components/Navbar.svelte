@@ -16,16 +16,18 @@
 
 <div class="chat-navbar" use:cssVars={$theme} bind:clientWidth={widthSize}>
     {#if widthSize < 440 || $receiver.preventShrink}
-        <div
-            class="receiver-image-container"
-            use:cssVars={{ round: $receiver.round }}
-        >
-            <img
-                class="receiver-image"
-                src={$receiver.image}
-                alt="Chat receiver"
-            />
-        </div>
+        {#if $receiver.image}
+            <div
+                class="receiver-image-container"
+                use:cssVars={{ round: $receiver.round || '100%' }}
+            >
+                <img
+                    class="receiver-image"
+                    src={$receiver.image}
+                    alt="Chat receiver"
+                />
+            </div>
+        {/if}
         {#if $receiver.name || $receiver.status}
             <div class="receiver-details">
                 <span class="receiver-name">{$receiver.name}</span>
@@ -36,7 +38,7 @@
             <div class="close" on:click={closeChat} />
         {/if}
     {:else}
-        <span class="receiver-talk"> Fale com {$receiver.name}</span>
+        <span class="receiver-talk"> {$receiver.talkWithText || 'Talk with'} {$receiver.name}</span>
     {/if}
 </div>
 
@@ -62,6 +64,7 @@
         height: 80%;
         border-radius: var(--round);
         margin-right: 15px;
+        aspect-ratio: 1;
     }
 
     .receiver-details {

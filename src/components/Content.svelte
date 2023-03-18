@@ -3,6 +3,7 @@
     import messages from "../store/message";
     import Typing from "./chat/Typing.svelte";
     import Message from "./chat/Message.svelte";
+    import showInput from "../store/input";
 
     let chat;
 
@@ -18,14 +19,10 @@
         }, 10);
     };
 
-    messages.subscribe(() => {
-        if (chat) {
-            scrollTo(chat, chat.scrollHeight, 300);
-        }
-    });
+    $: $messages && chat && scrollTo(chat, chat.scrollHeight, 300);
 </script>
 
-<div class="chat-content" bind:this={chat}>
+<div class="chat-content" style:flex={$showInput ? 9 : 10} bind:this={chat}>
     {#each $messages as message}
         <Message {message} />
     {/each}
@@ -37,7 +34,6 @@
 
 <style>
     .chat-content {
-        flex: 9;
         display: flex;
         flex-direction: column;
         padding: 10px 16px;

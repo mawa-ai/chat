@@ -8,8 +8,6 @@
 
     export let message: Message;
 
-    let hide = false;
-
     const onSelect = (option) =>
         chatController.send({
             type: "text",
@@ -17,12 +15,8 @@
             fromUser: true,
         });
 
-    messages.subscribe((messages) => {
-        const lastMessage = messages[messages.length - 1];
-        if (lastMessage?.fromUser) {
-            hide = true;
-        }
-    });
+    $: lastMessage = $messages[$messages.length - 1];
+    $: hide = lastMessage?.fromUser;
 </script>
 
 <Text message={{ ...message, content: message.content.text }} />

@@ -14,15 +14,23 @@
     import widgetStore from "./store/widget";
     import chatController from "./chatController";
     import { createEventDispatcher } from "svelte";
-    import type { Receiver, Theme } from "./types";
+    import type { Receiver, Theme, Widget as TWidget } from "./types";
 
     export let theme: Theme = undefined;
     export let receiver: Receiver = undefined;
-    export let widget: Widget = undefined;
+    export let widget: TWidget = undefined;
 
-    $: theme && ($themeStore = { ...$themeStore, ...theme });
-    $: receiver && ($receiverStore = { ...$receiverStore, ...receiver });
-    $: widget && ($widgetStore = { ...$widgetStore, ...widget });
+    $: if (theme) {
+        $themeStore = { ...theme };
+    }
+
+    $: if (receiver) {
+        $receiverStore = { ...receiver };
+    }
+
+    $: if (widget) {
+        $widgetStore = { ...widget };
+    }
 
     const dispatch = createEventDispatcher();
     chatController.addReceiver((message) => dispatch("message", message));
