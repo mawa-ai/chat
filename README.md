@@ -11,18 +11,18 @@ Create and manage chats easily
     import Chat, * as chat from 'chat-embed/svelte';
 
     const handleMessage = async (event) => {
-		const message = event.detail;
-		if (message.fromUser) {
-			chat.typing();
+        const message = event.detail;
+        if (message.fromUser) {
+            chat.typing();
 
             setTimeout(() => {
-				chat.send({
-					type: 'text',
-					content: cleanedText
-				});
+                chat.send({
+                    type: 'text',
+                    content: cleanedText
+                });
             }, 1000)
-		}
-	}
+        }
+    }
 </script>
 
 <Chat on:message={handleMessage} />
